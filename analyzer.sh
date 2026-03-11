@@ -1,6 +1,6 @@
 #!/bin/bash
 
-login_attempts=$(grep -i "failed password" /var/log/auth.log | awk "[0-9].[0-9].[0-9].[0-9]")
+login_attempts=$(grep -i "failed password" /var/log/auth.log | grep -oE "[0-9].[0-9].[0-9].[0-9]" | wc -l)
 
 if [ $login_attempts -gt 5 ]; then
     echo "Failed IP Addresse(s)"
