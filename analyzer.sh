@@ -1,17 +1,33 @@
 #!/bin/bash
 
-login_attempts=$(grep -i "failed password" /var/log/auth.log | grep -oE "[0-9].[0-9].[0-9].[0-9]" | wc -l)
+# log file
+LOG_FILE=/var/log/auth.log
 
+# list of the IP addresses that failed login
+FAILED_IPs=failed_ips.txt
+
+# ip address regex pattern
+IP_ADDRESS_REGEX=\b[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}\b
+
+
+# ip addresses failed log in attempts
+login_attempts=$(grep -i "failed password" $LOG_FILE | grep -oE "$IP_ADDRESS_REGEX" | sort | wc -l)
+
+# checking if the number of failed attempts is more than 5 and compressing old reports
 if [ $login_attempts -gt 5 ]; then
     echo "Failed IP Addresse(s)"
-    awk "[0-9].[0-9].[0-9].[0-9]"
-    
-    tar -czvf old_log.tar.gz auth.log
+    echo "====================="
+  
+    cat $FAILED_IPs
+
+    tar -czvf $FAILED_IPs.tar.gz $FAILED_IPs
 fi
 
+# ensuring that each time we have a new report it is automatically commited to github
 git_commit() {
-    git add /var/log/auth.log
-    git commit -m "daily report commit"
+    git add $FAILED_IPs
+    git commit -m "daily failed logins report commit"
 }
 
 git_commit
+
