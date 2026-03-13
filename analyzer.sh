@@ -10,14 +10,16 @@ FAILED_IPs=failed_ips.txt
 IP_ADDRESS_REGEX=\b[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}\b
 
 
-# ip addresses failed log in attempts
+# number of failed login attempts by each
 login_attempts=$(grep -i "failed password" $LOG_FILE | grep -oE "$IP_ADDRESS_REGEX" | sort | wc -l)
+
 
 # checking if the number of failed attempts is more than 5 and compressing old reports
 if [ $login_attempts -gt 5 ]; then
     echo "Failed IP Addresse(s)"
-    echo "====================="
-  
+    
+    grep -i "failed password" $LOG_FILE | grep -oE "$IP_ADDRESS_REGEX" | sort > failed_ips.txt
+
     cat $FAILED_IPs
 
     tar -czvf $FAILED_IPs.tar.gz $FAILED_IPs
