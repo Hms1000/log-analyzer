@@ -9,3 +9,6 @@
 - whenever i tried running the script this error kept on popping up
 - I went over the script and figured out that the 'failed_ips.txt' was not created
 - And so i redirected stdin to it
+
+## fatal: pathspec 'failed_ips.txt' did not match any files: AGAIN!!!
+- besides the upgrades this error keeps appearing which makes me makes me wonder if there's something else I'm missing 
