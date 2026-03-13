@@ -10,7 +10,7 @@ FAILED_IPs=failed_ips.txt
 IP_ADDRESS_REGEX=\b[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}\b
 
 
-# number of failed login attempts by each
+# number of failed login attempts by each ip address
 login_attempts=$(grep -i "failed password" $LOG_FILE | grep -oE "$IP_ADDRESS_REGEX" | sort | wc -l)
 
 
