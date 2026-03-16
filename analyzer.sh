@@ -34,7 +34,7 @@ git_commit() {
     git add $FAILED_IPs
     git commit -m "daily failed logins report commit"
 else
-    echo "$FAILED_IPs does not exist"
+    echo "System login attempts are less than 5"
     fi
 }
 
