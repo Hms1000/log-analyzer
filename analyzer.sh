@@ -27,8 +27,12 @@ fi
 
 # ensuring that each time we have a new report it is automatically commited to github
 git_commit() {
+    if [ -f $FAILED_IPs ];then
     git add $FAILED_IPs
     git commit -m "daily failed logins report commit"
+else
+    echo "$FAILED_IPs does not exist"
+    fi
 }
 
 git_commit
