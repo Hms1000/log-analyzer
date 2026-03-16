@@ -3,8 +3,11 @@
 # log file
 LOG_FILE=/var/log/auth.log
 
+# date and time variable
+DATE=$(date +%Y-%m-%d)
+
 # list of the IP addresses that failed login
-FAILED_IPs=failed_ips.txt
+FAILED_IPs=failed_ips_$DATE.txt
 
 # ip address regex pattern
 IP_ADDRESS_REGEX=\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b
