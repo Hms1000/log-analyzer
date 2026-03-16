@@ -7,7 +7,7 @@ LOG_FILE=/var/log/auth.log
 FAILED_IPs=failed_ips.txt
 
 # ip address regex pattern
-IP_ADDRESS_REGEX=\b[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}\b
+IP_ADDRESS_REGEX=\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b
 
 
 # number of failed login attempts by each ip address
