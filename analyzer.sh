@@ -14,11 +14,11 @@ IP_ADDRESS_REGEX=\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b
 
 
 # number of failed login attempts by each ip address
-login_attempts=$(grep -i "failed password" $LOG_FILE | grep -oE "$IP_ADDRESS_REGEX" | sort | wc -l)
+LOGIN_ATTEMPTS=$(grep -i "failed password" $LOG_FILE | grep -oE "$IP_ADDRESS_REGEX" | sort | wc -l)
 
 
 # checking if the number of failed attempts is more than 5 and compressing old reports
-if [ $login_attempts -gt 5 ]; then
+if [ $LOGIN_ATTEMPTS -gt 5 ]; then
     echo "Failed IP Addresse(s)"
     
     grep -i "failed password" $LOG_FILE | grep -oE "$IP_ADDRESS_REGEX" | sort > failed_ips.txt
@@ -36,6 +36,7 @@ git_commit() {
 else
     echo "System login attempts are less than 5"
     fi
+    
 }
 
 git_commit

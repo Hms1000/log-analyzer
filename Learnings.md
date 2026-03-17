@@ -12,5 +12,5 @@
 
 ## fatal: pathspec 'failed_ips.txt' did not match any files: AGAIN!!!
 - even though after the upgrades this error keeps appearing which makes me wonder if there's something else I'm missing 
-- I figured out that in the script the git was committing regardless of whether the file exists or not 
+- I figured out that in the script git was committing regardless of whether the file exists or not 
 - Therefore, I decided to use conditionals so thay git can only commit if the report exists unlike previously where the script was trying to commit even when the report does'nt exist.
