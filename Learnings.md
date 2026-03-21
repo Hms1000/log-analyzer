@@ -14,3 +14,7 @@
 - even though after the upgrades this error keeps appearing which makes me wonder if there's something else I'm missing 
 - I figured out that in the script git was committing regardless of whether the file exists or not 
 - Therefore, I decided to use conditionals so thay git can only commit if the report exists unlike previously where the script was trying to commit even when the report does'nt exist.
+
+## sort: cannot read: failed_ips_2026-03-21.txt: No such file or directory
+- I made some upgrades which improves the scripts overall power, however when i run it i'm getting the error above
+- I will definitely have to revisit he script again and see , why that is.
