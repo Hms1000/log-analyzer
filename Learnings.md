@@ -18,3 +18,6 @@
 ## sort: cannot read: failed_ips_2026-03-21.txt: No such file or directory
 - I made some upgrades which improves the scripts overall power, however when i run it i'm getting the error above
 - I will definitely have to revisit he script again and see , why that is.
+
+## The creation of the `malicious_ips.txt` file even when we don't have any malicious logins is something that i'm trying to fix
+- i think the script should be able to recognize the absence of malicious scripts and stop creating a `malicious_ips.txt` when there is no malicious logins
