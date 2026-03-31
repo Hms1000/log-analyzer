@@ -17,19 +17,19 @@ IP_ADDRESS_REGEX=\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b
 IP_ADDRESSES=$(grep -i "failed password" $LOG_FILE | grep -oE "$IP_ADDRESS_REGEX" | sort)
 
 # write the list to a file
-echo "$IP_ADDRESSES" > failed_ips.txt
+echo "$IP_ADDRESSES" > $FAILED_IPs
 
-echo "DATE - IP - OCCURENCE" > malicious.txt
+echo "DATE - IP - OCCURENCE" > $MALICIOUS_IPs
 
 for IP in $(sort -u $FAILED_IPs);
-do count =$(grep -ci "$IP" $FAILED_IPs)
-    if [ $count -ge 5 ];then
+do COUNT=$(grep -ci "$IP" $FAILED_IPs)
+    if [ $COUNT -ge 5 ];then
 
-        echo "Warning!!! Malicious IP Address: $IP: $count occurence"
+        echo "Warning!!! Malicious IP Address: ${IP}: ${COUNT} occurence"
 
-        echo "$DATE - $IP - $COUNT" >> malicious.txt
-
+        echo "${DATE} - ${IP} - ${COUNT}" >> $MALICIOUS_IPs
     fi
+    
 done
 
 
