@@ -1,11 +1,12 @@
 [Unit]
 Description=Log Analyzer Service
 After=network.target
-Documentation=~/bash-projects/log-analyzer/README.md
+Documentation=/usr/share/doc/analyzer/README.md
 
 [Service]
 ExecStart=/usr/local/bin/analyzer.sh
 Restart=on-failure
+Type=oneshot
 
 [Install]
 WantedBy=multi-user.target
