@@ -1,7 +1,7 @@
 [Unit]
 Description=Log Analyzer Service
 After=network.target
-Documentation=file:///usr/share/doc/analyzer/README.md
+Documentation=file:///usr/share/doc/log-analyzer/README.md
 
 [Service]
 ExecStart=/usr/local/bin/analyzer.sh
