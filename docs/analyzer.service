@@ -4,7 +4,7 @@ After=network.target
 Documentation=file:///usr/share/doc/log-analyzer/README.md
 
 [Service]
-ExecStart=/usr/local/bin/analyzer.sh
+ExecStart=/opt/log-analyzer/analyzer.sh
 Restart=on-failure
 Type=oneshot
 
