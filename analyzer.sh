@@ -23,6 +23,7 @@ echo "$IP_ADDRESSES" > $FAILED_IPs
 
 echo "DATE - IP - OCCURENCE" > $MALICIOUS_IPs
 
+# checking occurence of malicious login attempts
 for IP in $(sort -u $FAILED_IPs);
 do COUNT=$(grep -ci "$IP" $FAILED_IPs)
     if [ $COUNT -ge 5 ];then
@@ -37,14 +38,19 @@ done
 
 # ensuring that each time we have a new report it is automatically commited to github
 git_commit() {
-    if [ -s $MALICIOUS_IPs ];then
-        
-        tar -czvf $MALICIOUS_IPs.tar.gz $MALICIOUS_IPs
-        git add $MALICIOUS_IPs
-        git commit -m "daily malicious logins report commit"
-    else
-        echo "System login attempts are less than 5"
-    fi
+	
+	cd $REPO_DIR || exit
+
+    	if [ -s $MALICIOUS_IPs ];then
+        	
+		# compressing the files and giving a report update
+        	tar -czvf $MALICIOUS_IPs.tar.gz -C $REPO_DIR/reports malicious_ips_${DATE}.txt
+        	git add $MALICIOUS_IPs
+		git add $MALICIOUS_IPs.tar.gz
+        	git commit -m "daily malicious logins report commit"
+    	else
+        	echo "System login attempts are less than 5"
+    	fi
     
 }
 
