@@ -5,8 +5,9 @@ Documentation=file:///usr/share/doc/log-analyzer/README.md
 
 [Service]
 ExecStart=/opt/log-analyzer/analyzer.sh
-Restart=on-failure
 Type=oneshot
+User=hms
+WorkingDirectory=/opt/log-analyzer
 
 [Install]
 WantedBy=multi-user.target
